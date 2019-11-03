@@ -1,5 +1,3 @@
 /venv
-/data
-/glove.6B
+NER/Named-Entity-Recognition-with-Bidirectional-LSTM-CNNs/embeddings/glove.6B
 glove.6B.zip
-
