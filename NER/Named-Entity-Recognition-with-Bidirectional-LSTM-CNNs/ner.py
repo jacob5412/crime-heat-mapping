@@ -1,3 +1,4 @@
+from functools import partial
 import numpy as np
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -19,10 +20,21 @@ class Parser:
         if not loc:
             loc = os.path.join(os.path.expanduser('~'), '.ner_model')
         self.model = load_model(os.path.join(loc,"model.h5"))
+
+        # save np.load
+        np_load_old = partial(np.load)
+
+        # modify the default parameters of np.load
+        np.load = lambda *a, **k: np_load_old(*a, allow_pickle=True, **k)
+
         # loading word2Idx
         self.word2Idx = np.load(os.path.join(loc,"word2Idx.npy")).item()
+
         # loading idx2Label
         self.idx2Label = np.load(os.path.join(loc,"idx2Label.npy")).item()
+
+        # restore np.load for future normal usage
+        np.load = np_load_old
 
     def getCasing(self,word, caseLookup):   
         casing = 'other'
