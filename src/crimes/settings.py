@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     # third party
 
     # own
-    'map'
+    'map',
 ]
 
 MIDDLEWARE = [
