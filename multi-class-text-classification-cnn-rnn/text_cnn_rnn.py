@@ -1,5 +1,8 @@
 import numpy as np
 import tensorflow as tf
+import warnings
+
+warnings.filterwarnings("ignore")
 
 class TextCNNRNN(object):
 	def __init__(self, embedding_mat, non_static, hidden_unit, sequence_length, max_pool_size,

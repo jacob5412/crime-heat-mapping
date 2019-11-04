@@ -9,6 +9,9 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from text_cnn_rnn import TextCNNRNN
+import warnings
+
+warnings.filterwarnings("ignore")
 
 logging.getLogger().setLevel(logging.INFO)
 
@@ -134,5 +137,5 @@ def predict_unseen_data():
 			logging.critical('Prediction is complete, all files have been saved: {}'.format(predicted_dir))
 
 if __name__ == '__main__':
-	# python3 predict.py ./trained_results_1478563595/ ./data/small_samples.csv
+	# python3 predict.py ./trained_results_1572842981/ ./data/small_samples.csv
 	predict_unseen_data()
