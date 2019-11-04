@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils.timezone import now
+import datetime
 
 # Create your models here.
 class News(models.Model):
@@ -52,3 +54,10 @@ class News(models.Model):
     ])
     state = models.CharField(max_length=35)
     city = models.CharField(max_length=40)
+    time_created = models.DateTimeField(
+        default=now, blank=True, editable=True)
+
+    # ensures only new news data is displayed
+    def older_than_ten_days(self):
+        ten_days_ago = (now() - datetime.timedelta(days=10)).timestamp()
+        return ten_days_ago >= self.time_created.timestamp()
