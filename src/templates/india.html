@@ -9,12 +9,15 @@
     <script src="https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/datamaps.none.js"></script>
 </head>
 <body>
-    <p>{{ request.user }}</p>
-    <p>{{ request.user.is_authenticated }}</p>
     <p>
-        <!-- passing a context variable -->
-        {{ my_text }} </br>
-        {{ my_number }}
+        <!-- passing crime data -->
+        {% for crime in crime_id %}
+            {{ crime.title }}
+            {{ crime.category }}
+            {{ crime.severity }}
+            {{ crime.state }}
+            {{ crime.city }}
+        {% endfor %}
     </p>
     <div id="india" style="height: 600px; width: 900px;"></div>
     <script>

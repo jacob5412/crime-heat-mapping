@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import News
 
 # Create your views here.
 def map_view(request, *args, **kwargs):
     print(args,kwargs)
     print(request.user)
-    #return HttpResponse("<h1>Hello World</h1>")
+    
+    #return HttpResponse("<h1>Hello World</h1>") # string of html
 
-    my_context = {
-        "my_text": "This is about us",
-        "my_number": 123
+    crime = News.objects.all()
+    crime_data = {
+        "crime_id": crime
     }
-    return render(request, "india.html", my_context)
+    return render(request, "india.html", crime_data)
