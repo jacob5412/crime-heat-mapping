@@ -1,6 +1,0 @@
-model_checkpoint_path: "best_model.ckpt"
-all_model_checkpoint_paths: "../checkpoints_1572842981/model-4600"
-all_model_checkpoint_paths: "../checkpoints_1572842981/model-4800"
-all_model_checkpoint_paths: "../checkpoints_1572842981/model-5000"
-all_model_checkpoint_paths: "../checkpoints_1572842981/model-5200"
-all_model_checkpoint_paths: "best_model.ckpt"

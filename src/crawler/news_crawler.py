@@ -87,4 +87,4 @@ if __name__ == '__main__':
 
     # saving the dataframe
     timestamp = str(int(time.time()))
-    crawl.to_csv('news-' + timestamp + '.csv', sep='|',index=False)
+    crawl.to_csv('crawler-output.csv', sep='|',index=False)
