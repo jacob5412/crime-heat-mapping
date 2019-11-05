@@ -8,17 +8,48 @@
     <script src="https://rawgit.com/Anujarya300/bubble_maps/master/data/geography-data/datamaps.none.js"></script>
 </head>
 <body>
-    <p>
-        <!-- passing crime data -->
-        {% for crime in crime_id %}
-            {% if crime.older_than_ten_days == False %}
-                {{ crime.severity }}
-                {{ crime.statecode }}
-            {% endif %}
-        {% endfor %}
-    </p>
+<p id = "hello"></p>
     <div id="india" style="height: 600px; width: 900px;"></div>
     <script>
+        let crime = {{ crimes|safe }};
+
+        let bubbles = [];
+        let state_data = {}
+
+        for(let i = 0; i < crime.length; i++){
+            dict = {};
+            dict['centered'] = crime[i]['statecode'];
+            if(crime[i]['severity'] > 10){
+                dict['fillKey'] = 'MAJOR';
+            }
+            else if(crime[i]['severity'] > 6){
+                dict['fillKey'] = 'MEDIUM';
+            }
+            else{
+                dict['fillKey'] = 'MINOR';
+            }
+            dict['radius'] = crime[i]['severity'];
+            dict['state'] = crime[i]['state'];
+            bubbles.push(dict);
+
+            state_data[crime[i]['statecode']] = {fillKey: dict['fillKey']}
+        }
+
+        {% comment %} bubbles = [
+            {
+                centered: "MH",
+                fillKey: "MAJOR",
+                radius: 20,
+                state: "Maharastra"
+            },
+            {
+                centered: "AP",
+                fillKey: "MAJOR",
+                radius: 22,
+                state: "Andhra Pradesh"
+            }
+        ] {% endcomment %}
+        
         var bubble_map = new Datamap({
             element: document.getElementById('india'),
             scope: 'india',
@@ -36,10 +67,7 @@
                 'MINOR': '#bada55',
                 defaultFill: '#dddddd'
             },
-            data: {
-                'JH': { fillKey: 'MINOR' },
-                'MH': { fillKey: 'MEDIUM' }
-            },
+            data: state_data,
             setProjection: function (element) {
                 var projection = d3.geo.mercator()
                     .center([78.9629, 23.5937]) // always in [East Latitude, North Longitude]
@@ -48,52 +76,7 @@
                 return { path: path, projection: projection };
             }
         });
-
-        let bubbles = [
-            {
-                centered: "MH",
-                fillKey: "MAJOR",
-                radius: 20,
-                state: "Maharastra"
-            },
-            {
-                centered: "AP",
-                fillKey: "MAJOR",
-                radius: 22,
-                state: "Andhra Pradesh"
-            },
-            {
-                centered: "TN",
-                fillKey: "MAJOR",
-                radius: 16,
-                state: "Tamil Nadu"
-            },
-            {
-                centered: "WB",
-                fillKey: "MEDIUM",
-                radius: 15,
-                state: "West Bengal"
-            },
-            {
-                centered: "MP",
-                fillKey: "MEDIUM",
-                radius: 15,
-                state: "Madhya Pradesh"
-            },
-            {
-                centered: "UP",
-                fillKey: "MINOR",
-                radius: 8,
-                state: "Uttar Pradesh"
-            },
-            {
-                centered: "RJ",
-                fillKey: "MINOR",
-                radius: 7,
-                state: "Rajasthan"
-            }
-
-        ]
+        
         // // ISO ID code for city or <state></state>
         setTimeout(() => { // only start drawing bubbles on the map when map has rendered completely.
             bubble_map.bubbles(bubbles, {
