@@ -12,10 +12,12 @@
         <!-- passing crime data -->
         {% for crime in crime_id %}
             {% if crime.older_than_ten_days == False %}
+                {{ crime.id }}
                 {{ crime.title }}
                 {{ crime.category }}
                 {{ crime.severity }}
                 {{ crime.state }}
+                {{ crime.statecode }}
                 {{ crime.city }}
             {% endif %}
         {% endfor %}

@@ -53,6 +53,7 @@ class News(models.Model):
         MinValueValidator(1)
     ])
     state = models.CharField(max_length=35)
+    statecode = models.CharField(max_length=2)
     city = models.CharField(max_length=40)
     time_created = models.DateTimeField(
         default=now, blank=True, editable=True)
