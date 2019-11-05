@@ -4,8 +4,8 @@ import pandas as pd
 import re
 import time
 from opencage.geocoder import OpenCageGeocode
-import nltk
 from nltk.corpus import stopwords
+from spacy.lang.en.stop_words import STOP_WORDS
 
 def crawl_kompas(url, key):
     # the frontier
@@ -23,6 +23,10 @@ def crawl_kompas(url, key):
 
     # removing stop words from title
     cachedStopWords = set(stopwords.words('english'))
+    print(len(cachedStopWords))
+
+    spacy_stopwords = STOP_WORDS
+    print(len(spacy_stopwords))
 
     for k in new_pages:
         pages.append("https://www.indiatoday.in"+k.find('a')['href'])
@@ -63,9 +67,8 @@ def crawl_kompas(url, key):
                     # cleaning data
                     city = city.strip()
                     title = ' '.join(
-                        [word for word in title.split() if word not in cachedStopWords])
+                        [word for word in title.split() if word not in spacy_stopwords])
                     title = title.strip().upper()
-                    
                     result = [title, city, state, state_code]
                     print(result)
 
