@@ -10,7 +10,7 @@ from spacy.lang.en.stop_words import STOP_WORDS
 def crawl_kompas(url, key):
     # the frontier
     result = []
-    newsdf = pd.DataFrame(columns=['Title','City','State','StateCode'])
+    newsdf = pd.DataFrame(columns=['Descript','City','State','StateCode'])
 
     # search only relevant pages
     req = requests.get(url)
@@ -79,10 +79,12 @@ def crawl_kompas(url, key):
 
 if __name__ == '__main__':
     web_url = 'https://www.indiatoday.in/crime'
+
+    # get api key from https://opencagedata.com/api
     api_key = '9100acb25e54414aa064c19b6c6a9937'
     crawl = crawl_kompas(url=web_url, key=api_key)
     print(crawl)
 
     # saving the dataframe
     timestamp = str(int(time.time()))
-    crawl.to_csv('news-' + timestamp + '.csv', sep='|')
+    crawl.to_csv('news-' + timestamp + '.csv', sep='|',index=False)
