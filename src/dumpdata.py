@@ -14,3 +14,15 @@ predictions.rename(
 
 df = pd.merge(predictions, categories, on='category', how='left')
 df = pd.merge(df, crawler_output, on='Descript')
+print(df)
+
+for ind in df.index:
+    _, created = News.objects.get_or_create(
+        title=df['Descript'][ind],
+        category=df['category'][ind],
+        severity=df['severity'][ind],
+        state=df['State'][ind],
+        statecode=df['StateCode'][ind],
+        city=df['City'][ind]
+    )
+    print(created)
