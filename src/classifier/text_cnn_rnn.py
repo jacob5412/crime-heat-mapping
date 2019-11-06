@@ -41,8 +41,11 @@ class TextCNNRNN(object):
 				filter_shape = [filter_size, embedding_size, 1, num_filters]
 				W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name='W')
 				b = tf.Variable(tf.constant(0.1, shape=[num_filters]), name='b')
+
+				# strides, padding and convolution
 				conv = tf.nn.conv2d(emb_pad, W, strides=[1, 1, 1, 1], padding='VALID', name='conv')
 
+				# relu layer
 				h = tf.nn.relu(tf.nn.bias_add(conv, b), name='relu')
 
 				# Maxpooling over the outputs
@@ -51,14 +54,17 @@ class TextCNNRNN(object):
 				pooled_concat.append(pooled)
 
 		pooled_concat = tf.concat(pooled_concat,2)
+		# dropout regularization
 		pooled_concat = tf.nn.dropout(pooled_concat, self.dropout_keep_prob)
 
 		# lstm_cell = tf.nn.rnn_cell.LSTMCell(num_units=hidden_unit)
 
 		#lstm_cell = tf.nn.rnn_cell.GRUCell(num_units=hidden_unit)
+		# lstm using gated recurrent units
 		lstm_cell = tf.contrib.rnn.GRUCell(num_units=hidden_unit)
 
 		#lstm_cell = tf.nn.rnn_cell.DropoutWrapper(lstm_cell, output_keep_prob=self.dropout_keep_prob)
+		# dropout regularization
 		lstm_cell = tf.contrib.rnn.DropoutWrapper(lstm_cell, output_keep_prob=self.dropout_keep_prob)
 		
 

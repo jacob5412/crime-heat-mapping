@@ -34,6 +34,7 @@ def clean_str(s):
 def load_embeddings(vocabulary):
 	word_embeddings = {}
 	for word in vocabulary:
+		# initial matrix with random uniform distribution
 		word_embeddings[word] = np.random.uniform(-0.25, 0.25, 300)
 	return word_embeddings
 
