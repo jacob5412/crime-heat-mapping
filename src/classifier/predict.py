@@ -74,10 +74,11 @@ def predict_unseen_data():
 		y_test = np.asarray(y_)
 
 	timestamp = trained_dir.split('/')[-2].split('_')[-1]
-	predicted_dir = './predicted_results_' + timestamp + '/'
-	if os.path.exists(predicted_dir):
-		shutil.rmtree(predicted_dir)
-	os.makedirs(predicted_dir)
+	# predicted_dir = './predicted_results_' + timestamp + '/'
+	predicted_dir = './predicted_results' + '/'
+	# if os.path.exists(predicted_dir):
+	# 	shutil.rmtree(predicted_dir)
+	# os.makedirs(predicted_dir)
 
 	with tf.Graph().as_default():
 		session_conf = tf.ConfigProto(allow_soft_placement=True, log_device_placement=False)
