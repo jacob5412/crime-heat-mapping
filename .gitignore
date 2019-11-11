@@ -2,3 +2,4 @@
 NER/NER-with-Bidirectional-LSTM-CNNs/embeddings/glove.6B
 glove.6B.zip
 /.vscode
+src/.DS_Store
