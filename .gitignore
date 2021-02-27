@@ -1,5 +1,6 @@
 .DS_Store
-/__pycache__
+src/classifier/__pycache__
+src/classifier/.ipynb_checkpoints
 
 # Temporary and binary files
 *~
