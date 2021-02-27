@@ -60,6 +60,6 @@ python3 manage.py shell < dumpdata.py
     │   ├── tests.py
     │   └── views.py
     └── templates
-        ├── india.html
-        └── reference.html
+        ├── india.html # map of India for templating
+        └── reference.html # reference map of India
 ```
