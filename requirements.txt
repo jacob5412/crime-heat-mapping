@@ -24,7 +24,7 @@ cycler==0.10.0
 cymem==2.0.5
 decorator==4.4.0
 defusedxml==0.6.0
-Django==3.1.7
+Django==3.1.12
 docutils==0.15.2
 entrypoints==0.3
 flatbuffers==1.12
