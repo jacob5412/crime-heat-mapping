@@ -1,5 +1,7 @@
 # Mapping crime hotspots onto the map of India
 
+**Note**: Please use Python 3.7
+
 ## Running the Django server
 
 ```zsh
