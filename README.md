@@ -1,5 +1,7 @@
 # Mapping crime hotspots onto the map of India
 
+**Paper:** J. John, M. S. Varkey and S. M, "Multi-class Text Classification and Publication of Crime Data from Online News Sources," 2021 8th International Conference on Smart Computing and Communications (ICSCC), 2021, pp. 64-63, doi: 10.1109/ICSCC51209.2021.9528127. [Link](https://ieeexplore.ieee.org/document/9528127).
+
 **Note**: Please use Python 3.7
 
 ## Running the Django server
